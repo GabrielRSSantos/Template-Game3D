@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4av2qhajyrnq"]
+
+[ext_resource type="Script" uid="uid://c5nalsrame717" path="res://scripts/coin.gd" id="1_rwqht"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_kahox"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rwqht"]
+
+[sub_resource type="Animation" id="Animation_rwqht"]
+resource_name = "roll"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0), Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i64fm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_11l1o"]
+_data = {
+&"RESET": SubResource("Animation_i64fm"),
+&"roll": SubResource("Animation_rwqht")
+}
+
+[node name="Coin" type="Area3D"]
+script = ExtResource("1_rwqht")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.236899, 0, 0.502909, 0)
+mesh = SubResource("SphereMesh_kahox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.276209, 0, 0.494944, 0)
+shape = SubResource("SphereShape3D_rwqht")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_11l1o")
+}
+autoplay = "roll"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
