@@ -4,6 +4,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var navigation = $NavigationAgent3D
 @export var target_player: CharacterBody3D
+@export var is_following := false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -15,6 +16,7 @@ func _physics_process(delta: float) -> void:
 	var new_velocity = (next_location - current_location).normalized() * SPEED
 	
 	velocity = velocity.move_toward(new_velocity, 0.25)
-	navigation.target_position = target_player.position
+	if is_following:
+		navigation.target_position = target_player.position
 	move_and_slide()
 	

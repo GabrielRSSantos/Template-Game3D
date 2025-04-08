@@ -1,19 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://be0wklfqjs41t"]
+[gd_scene load_steps=8 format=3 uid="uid://be0wklfqjs41t"]
 
 [ext_resource type="Script" uid="uid://dlbpr7iq11ajp" path="res://scripts/player.gd" id="1_3vyb7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
+albedo_color = Color(1, 0.321569, 1, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 10.16
+
+[sub_resource type="SphereMesh" id="SphereMesh_3vyb7"]
+material = SubResource("StandardMaterial3D_3vyb7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_3vyb7"]
+
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41728, 0)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 0.995369, 0.0961237, 0, -0.0961237, 0.995369, 0, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 0.909816, 0.415011, 0, -0.415011, 0.909816, 0.643879, 1.22609, 1.65648)
+
+[node name="RayCast3D" type="RayCast3D" parent="head/Camera3D"]
+target_position = Vector3(0, 0, -100)
+
+[node name="bullet_position" type="MeshInstance3D" parent="head/Camera3D/RayCast3D"]
+transform = Transform3D(0.143147, 0, 0, 0, 0.143148, 6.70552e-08, 0, -2.23517e-08, 0.143147, 0, 0, 0)
+mesh = SubResource("SphereMesh_3vyb7")
+
+[node name="coming_bullet" type="RayCast3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.441535, -0.0599933, -1.2087)
+target_position = Vector3(0, 0, -1)
+
+[node name="GunSim" type="MeshInstance3D" parent="head/coming_bullet"]
+transform = Transform3D(0.265419, 0, 0, 0, 0.265419, 0, 0, 0, 0.937334, 0, 4.76837e-07, 0.1953)
+mesh = SubResource("BoxMesh_g2els")
+skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00916, 0)
@@ -23,16 +52,19 @@ shape = SubResource("CapsuleShape3D_g2els")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01121, 0)
 mesh = SubResource("CapsuleMesh_3vyb7")
 
-[node name="Label" type="Label" parent="."]
+[node name="Aim" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -49.5
-offset_top = -11.5
-offset_right = 49.5
-offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Hello Worlds"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="AimMesh" type="MeshInstance2D" parent="Aim"]
+scale = Vector2(11.0901, -10.8409)
+mesh = SubResource("BoxMesh_3vyb7")

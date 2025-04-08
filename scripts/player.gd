@@ -6,7 +6,14 @@ const SENSITIVITY = 0.004
 
 @onready var head = $head
 @onready var camera = $head/Camera3D
-@onready var is_first_person := false
+@onready var raycast = $head/Camera3D/RayCast3D
+@export var is_first_person := false
+
+#BULLET
+@onready var gun_barrel = $head/coming_bullet
+@onready var aim = $Aim/AimMesh
+@onready var end_point_raycast: MeshInstance3D = $head/Camera3D/RayCast3D/bullet_position
+var bullet = load("res://scenes/bullet.tscn")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -18,19 +25,20 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(10))
+		
 
 func _process(delta: float) -> void:
-	camera.position = Vector3(0, 0, 0) if is_first_person else Vector3(0, 1, 2)
+	gun_barrel.look_at(end_point_raycast.global_transform.origin)
+	endpoint_raycast_update()
+	first_person_config()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	# Add the gravity.
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		bullet_instance()
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# Handle jump.
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
@@ -46,3 +54,24 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func first_person_config() -> void:
+	if is_first_person:
+		camera.position = Vector3(0, 0, 0)
+		#aim.position = Vector2(20,18)
+	else:
+		camera.position = Vector3(0.6, 0.6, 1.2)
+		camera.position = Vector3(0.5, 1, 2)
+		#aim.position = Vector2(10,35)
+
+func bullet_instance() -> void:
+	var instance = bullet.instantiate()
+	instance.position = gun_barrel.global_position
+	instance.transform.basis = gun_barrel.global_transform.basis
+	get_parent().add_child(instance)
+
+func endpoint_raycast_update() -> void:
+	if raycast.is_colliding():
+		end_point_raycast.global_transform.origin = raycast.get_collision_point()
+	else:
+		end_point_raycast.position = Vector3(-0.1, -0.7, -10)
