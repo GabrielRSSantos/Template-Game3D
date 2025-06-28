@@ -1,10 +1,17 @@
 extends CharacterBody3D
+class_name Enemy
+
+@export var health := 100
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var navigation = $NavigationAgent3D
 @export var target_player: CharacterBody3D
 @export var is_following := false
+
+func _process(delta: float) -> void:
+	if health <= 0:
+		queue_free()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

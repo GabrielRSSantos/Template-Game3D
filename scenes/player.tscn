@@ -14,13 +14,15 @@ material = SubResource("StandardMaterial3D_3vyb7")
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
+radius = 0.420491
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3vyb7"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_3vyb7")
+is_first_person = true
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41728, 0)
@@ -33,6 +35,7 @@ target_position = Vector3(0, 0, -100)
 
 [node name="bullet_position" type="MeshInstance3D" parent="head/Camera3D/RayCast3D"]
 transform = Transform3D(0.143147, 0, 0, 0, 0.143148, 6.70552e-08, 0, -2.23517e-08, 0.143147, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_3vyb7")
 
 [node name="coming_bullet" type="RayCast3D" parent="head"]
@@ -40,9 +43,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.441535, -0.0599933, -1.2087
 target_position = Vector3(0, 0, -1)
 
 [node name="GunSim" type="MeshInstance3D" parent="head/coming_bullet"]
-transform = Transform3D(0.265419, 0, 0, 0, 0.265419, 0, 0, 0, 0.937334, 0, 4.76837e-07, 0.1953)
+transform = Transform3D(0.265419, 0, 0, 0, 0.265419, 0, 0, 0, 0.937334, 0, -0.334002, 0.1953)
+visible = false
 mesh = SubResource("BoxMesh_g2els")
 skeleton = NodePath("")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="head/coming_bullet"]
+light_energy = 2.0
+spot_range = 5.0361
+spot_angle = 19.6437
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00916, 0)

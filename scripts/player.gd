@@ -25,7 +25,9 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(10))
-		
+	if event.is_action_pressed("Teste"):
+		print("Teste pressed")
+		$"../Abandoned_House2/Casa/Puerta".rotate_y(90)
 
 func _process(delta: float) -> void:
 	gun_barrel.look_at(end_point_raycast.global_transform.origin)

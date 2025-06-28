@@ -1,13 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://3rw0v41phw7y"]
+[gd_scene load_steps=12 format=3 uid="uid://3rw0v41phw7y"]
 
 [ext_resource type="MeshLibrary" uid="uid://bwc7eo6foura1" path="res://meshs/decoration_meshs.tres" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://be0wklfqjs41t" path="res://scenes/player.tscn" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://b4av2qhajyrnq" path="res://scenes/coin.tscn" id="3_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://detqcsw6cc4dx" path="res://scenes/enemy.tscn" id="4_k0juu"]
 
-[sub_resource type="Environment" id="Environment_rwgxs"]
-ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k0juu"]
+sky_top_color = Color(0.99558, 0.99558, 0.99558, 1)
+sky_horizon_color = Color(1.64562, 1.76425, 1.71523, 1)
+ground_bottom_color = Color(0.247059, 0.721569, 0.52549, 1)
+ground_horizon_color = Color(1.64562, 1.76425, 1.71523, 1)
+energy_multiplier = 0.1
+
+[sub_resource type="Sky" id="Sky_71j4m"]
+sky_material = SubResource("ProceduralSkyMaterial_k0juu")
+
+[sub_resource type="Environment" id="Environment_qfnet"]
+background_mode = 2
+sky = SubResource("Sky_71j4m")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_71j4m"]
 vertices = PackedVector3Array(-7.28556, -0.637991, -2.71474, -5.78556, -0.637991, -2.71474, -6.03556, -0.637991, -10.4647, -7.53556, -0.637991, -2.21474, -16.5356, -0.637991, -10.4647, -16.5356, -0.637991, -2.21474, -2.03556, -0.637991, -2.71474, -1.78556, -0.637991, -10.4647, -0.535564, -0.637991, -2.71474, -0.285564, -0.637991, -1.71474, 6.21444, -0.637991, -1.71474, 6.21444, -0.637991, -10.4647, -5.28556, -0.637991, 4.03526, -5.28556, -0.637991, -0.46474, -7.28556, -0.637991, -0.46474, -16.5356, -0.637991, 4.03526, -0.535564, -0.637991, -0.46474, 6.21444, -0.637991, 4.03526)
@@ -21,18 +33,13 @@ size = Vector3(23.6613, 0.978882, 15.6207)
 [sub_resource type="BoxShape3D" id="BoxShape3D_k0juu"]
 size = Vector3(6.00635, 1, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_k0juu"]
-
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_rwgxs")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 0.654583, 0.755991, 0, -0.755991, 0.654583, -0.546908, 8.33677, 5.23793)
+environment = SubResource("Environment_qfnet")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_rwgxs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56419, 2.52816, -4.24464)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38639, 2.99486, -5.76308)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92398, 0)
@@ -66,10 +73,4 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 [node name="Enemy" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("4_k0juu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26462, 2.17907, 2.23067)
 target_player = NodePath("../CharacterBody3D")
-
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5346, 1.55163, -9.14077)
-gizmo_extents = 0.35
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Marker3D"]
-mesh = SubResource("SphereMesh_k0juu")
+is_following = true
