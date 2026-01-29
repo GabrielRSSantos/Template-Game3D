@@ -12,7 +12,7 @@ config_version=5
 
 config/name="3D Game"
 run/main_scene="uid://3rw0v41phw7y"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [input]
@@ -48,6 +48,12 @@ camera_control={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Box"
+
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
