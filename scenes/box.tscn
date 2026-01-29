@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bf61oy4sddq72"]
+
+[ext_resource type="Script" uid="uid://c127vdxk5ksvx" path="res://scripts/box.gd" id="1_3inec"]
+[ext_resource type="ArrayMesh" uid="uid://egtq0flcrbbe" path="res://Assets/Models/OBJ format/aid-defibrillator-red.obj" id="2_ks2v0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ks2v0"]
+size = Vector3(0.4761963, 0.5776367, 0.24313354)
+
+[node name="Box" type="StaticBody3D" unique_id=855835605]
+collision_layer = 2
+script = ExtResource("1_3inec")
+
+[node name="BoxMesh" type="MeshInstance3D" parent="." unique_id=804193651]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("2_ks2v0")
+
+[node name="BoxCollision" type="CollisionShape3D" parent="." unique_id=1561334190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00079345703, 0.2849121, -0.01914978)
+shape = SubResource("BoxShape3D_ks2v0")
