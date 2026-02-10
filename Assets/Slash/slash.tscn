@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cl2cgnmoifsk"]
+
+[ext_resource type="ArrayMesh" uid="uid://qnfyutpbm4g3" path="res://Assets/Slash/SlashMesh.obj" id="1_4v7bk"]
+[ext_resource type="Shader" uid="uid://cyfcp022n7vta" path="res://Assets/Slash/Slash.tres" id="2_o7a6s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eh606"]
+render_priority = 0
+shader = ExtResource("2_o7a6s")
+shader_parameter/FloatParameter = 0.0
+
+[node name="Node3D" type="Node3D" unique_id=228643541]
+
+[node name="SlashMesh" type="MeshInstance3D" parent="." unique_id=599044813]
+mesh = ExtResource("1_4v7bk")
+surface_material_override/0 = SubResource("ShaderMaterial_eh606")

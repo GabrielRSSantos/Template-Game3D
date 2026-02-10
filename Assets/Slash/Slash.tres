@@ -1,0 +1,38 @@
+[gd_resource type="VisualShader" format=3 uid="uid://cyfcp022n7vta"]
+
+[sub_resource type="Gradient" id="Gradient_tr7oy"]
+offsets = PackedFloat32Array(0.09556314, 0.26279864, 0.42320818, 0.7474403)
+colors = PackedColorArray(0, 0, 0, 1, 0.59258753, 0.59258753, 0.59258753, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kihlp"]
+gradient = SubResource("Gradient_tr7oy")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_uwpkn"]
+texture = SubResource("GradientTexture1D_kihlp")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_y42he"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_jckk6"]
+default_input_values = [1, Vector2(1, 0), 2, Vector2(0, 0)]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ipeqb"]
+parameter_name = "FloatParameter"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_cigj7"]
+default_input_values = [0, 0.0, 1, 0.25]
+operator = 2
+
+[resource]
+nodes/vertex/0/position = Vector2(420, 100)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_uwpkn")
+nodes/fragment/2/position = Vector2(80, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_y42he")
+nodes/fragment/3/position = Vector2(-740, 140)
+nodes/fragment/4/node = SubResource("VisualShaderNodeUVFunc_jckk6")
+nodes/fragment/4/position = Vector2(-200, 200)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatParameter_ipeqb")
+nodes/fragment/5/position = Vector2(-660, 340)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatOp_cigj7")
+nodes/fragment/6/position = Vector2(-400, 140)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 1, 4, 0, 2, 0, 5, 0, 4, 2, 3, 0, 6, 0, 6, 0, 4, 0)

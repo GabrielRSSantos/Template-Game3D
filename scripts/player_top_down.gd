@@ -23,6 +23,7 @@ var bullet = load("res://scenes/bullet.tscn")
 @onready var sprite_sub_viewport: Sprite3D = $SpriteViewPort
 @onready var progress_bar_searching: ProgressBar = $SubViewport/ProgressBar
 @onready var player_interaction_top_down: Area3D = $Head/PlayerInteraction
+@onready var press_button_sprite: Sprite3D = $PressButtonSprite
 
 var can_rotate := true
 var can_search := false
@@ -96,12 +97,14 @@ func check_is_box(box : Node3D) -> bool:
 	
 func player_search(delta) -> void:
 	if can_search:
+		press_button_sprite.visible = true
 		if Input.is_action_just_pressed("E"):
 			searching = true
 	else:
 		searching = false
 		
 	if searching:
+		press_button_sprite.visible = false
 		can_rotate = false
 		sprite_sub_viewport.visible = true
 		progress_bar_searching.value += delta * 10

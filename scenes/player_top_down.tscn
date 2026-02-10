@@ -2,6 +2,17 @@
 
 [ext_resource type="Script" uid="uid://trvdinrhhr3i" path="res://scripts/player_top_down.gd" id="1_d81os"]
 [ext_resource type="Texture2D" uid="uid://c2dexg47q6ajb" path="res://Assets/Models/FBX format/Textures/colormap.png" id="2_pg4pe"]
+[ext_resource type="Texture2D" uid="uid://bs0llftvvvooa" path="res://Assets/Keyboard & Mouse/Double/keyboard_e.png" id="3_vdmty"]
+[ext_resource type="FontFile" uid="uid://bnnmyh2r7slgk" path="res://Assets/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.ttf" id="4_et54c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5ewv"]
+font = ExtResource("4_et54c")
+font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0.52906674, 0.5290667, 0.5290667, 1)
+shadow_offset = Vector2(0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
 radius = 1.1557852
@@ -2727,12 +2738,50 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_g2els"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_vdmty"]
+viewport_path = NodePath("PressButtonViewPort")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2els"]
 bg_color = Color(0, 0.9647059, 0.27450982, 1)
 
 [node name="PlayerTopDown" type="CharacterBody3D" unique_id=1442459155 groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_d81os")
+
+[node name="PressButtonViewPort" type="SubViewport" parent="." unique_id=1551275399]
+disable_3d = true
+transparent_bg = true
+
+[node name="Panel" type="VBoxContainer" parent="PressButtonViewPort" unique_id=1528896934]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -49.5
+offset_right = 41.0
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 58
+alignment = 1
+
+[node name="Label" type="Label" parent="PressButtonViewPort/Panel" unique_id=544901341]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Search"
+label_settings = SubResource("LabelSettings_u5ewv")
+
+[node name="Container" type="Panel" parent="PressButtonViewPort/Panel" unique_id=481150129]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="KeyboardE" type="Sprite2D" parent="PressButtonViewPort/Panel/Container" unique_id=221280893]
+texture = ExtResource("3_vdmty")
 
 [node name="Head" type="Node3D" parent="." unique_id=1782390713]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41728, 0)
@@ -2746,7 +2795,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.71473074, 0)
 shape = SubResource("SphereShape3D_g2els")
 
 [node name="CameraHead" type="Camera3D" parent="Head" unique_id=477416829]
-transform = Transform3D(1, 0, 0, 0, 0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 0.18, 2.5999997, 2.2)
+transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0.18, 1.5, 2.2)
 current = true
 fov = 90.0
 
@@ -2861,6 +2910,13 @@ visible = false
 billboard = 1
 texture = SubResource("ViewportTexture_g2els")
 
+[node name="PressButtonSprite" type="Sprite3D" parent="." unique_id=799204611]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.3, 0)
+visible = false
+modulate = Color(1, 1, 1, 0.5058824)
+billboard = 1
+texture = SubResource("ViewportTexture_vdmty")
+
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1747659335]
 disable_3d = true
 transparent_bg = true
@@ -2881,6 +2937,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/fill = SubResource("StyleBoxFlat_g2els")
 show_percentage = false
+
+[node name="PlayerCanvas" type="CanvasLayer" parent="." unique_id=32832859]
 
 [connection signal="body_entered" from="Head/PlayerInteraction" to="." method="_on_player_interaction_body_entered"]
 [connection signal="body_exited" from="Head/PlayerInteraction" to="." method="_on_player_interaction_body_exited"]
