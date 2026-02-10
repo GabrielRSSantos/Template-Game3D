@@ -40,8 +40,8 @@ func _unhandled_input(event):
 func _physics_process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		bullet_instance()
+	#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		#bullet_instance()
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("space") and is_on_floor():
@@ -79,12 +79,14 @@ func animation_character(direction) -> void:
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		is_attacking = true
 		animation_player.play("attack-melee-right")
+		$Head/SlashNode/AnimationSlash.play("Slash")
 	else:
 		animation_player.play("idle")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack-melee-right":
 		is_attacking = false
+		$Head/SlashNode/AnimationSlash.play("RESET")
 
 func _on_player_interaction_body_entered(body: Node3D) -> void:
 	can_search = check_is_box(body)

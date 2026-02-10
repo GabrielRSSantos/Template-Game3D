@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c2dexg47q6ajb" path="res://Assets/Models/FBX format/Textures/colormap.png" id="2_pg4pe"]
 [ext_resource type="Texture2D" uid="uid://bs0llftvvvooa" path="res://Assets/Keyboard & Mouse/Double/keyboard_e.png" id="3_vdmty"]
 [ext_resource type="FontFile" uid="uid://bnnmyh2r7slgk" path="res://Assets/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.ttf" id="4_et54c"]
+[ext_resource type="PackedScene" uid="uid://cl2cgnmoifsk" path="res://Assets/Slash/slash.tscn" id="4_u5ewv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u5ewv"]
 font = ExtResource("4_et54c")
@@ -2821,6 +2822,9 @@ light_energy = 2.0
 spot_range = 5.0361
 spot_angle = 19.6437
 
+[node name="SlashNode" parent="Head" unique_id=228643541 instance=ExtResource("4_u5ewv")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, -0.047139943, -0.723248, -0.8349751)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1750734428]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6981249, 0)
 shape = SubResource("CapsuleShape3D_g2els")
@@ -2943,3 +2947,5 @@ show_percentage = false
 [connection signal="body_entered" from="Head/PlayerInteraction" to="." method="_on_player_interaction_body_entered"]
 [connection signal="body_exited" from="Head/PlayerInteraction" to="." method="_on_player_interaction_body_exited"]
 [connection signal="animation_finished" from="character-female-a/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="Head/SlashNode"]
