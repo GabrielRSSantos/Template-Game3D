@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://daj2pgh0m6542"
+path="res://.godot/imported/Cruz.obj-41a6d55d73290d2a28069e6ccb0a440f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Cruz.obj-41a6d55d73290d2a28069e6ccb0a440f.mesh"]
+
+source_file="res://Assets/Cross/Cruz.obj"
+dest_files=["res://.godot/imported/Cruz.obj-41a6d55d73290d2a28069e6ccb0a440f.mesh", "res://.godot/imported/Cruz.obj-41a6d55d73290d2a28069e6ccb0a440f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

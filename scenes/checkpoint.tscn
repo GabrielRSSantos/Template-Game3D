@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b4fgt3dk72p8l"]
+
+[ext_resource type="Shader" uid="uid://dn4m85k0r512l" path="res://Assets/ShadersTests/Point_Shader.tres" id="1_yyywg"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ywqth"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsimk"]
+render_priority = 0
+shader = ExtResource("1_yyywg")
+shader_parameter/ColorParameter = Color(0.76666665, 1, 0, 1)
+
+[node name="Checkpoint" type="MeshInstance3D" unique_id=1866000234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_ywqth")
+surface_material_override/0 = SubResource("ShaderMaterial_vsimk")

@@ -1,30 +1,49 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk1dqywdnstje"]
+[gd_scene format=3 uid="uid://dk1dqywdnstje"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_07cvt"]
+[ext_resource type="PackedScene" uid="uid://cwujfsm78ufw2" path="res://Assets/kenney_furniture-kit/Models/GLTF format/floorCorner.glb" id="1_qv65c"]
+[ext_resource type="PackedScene" uid="uid://cwrlbq22jcu41" path="res://Assets/kenney_furniture-kit/Models/GLTF format/floorCornerRound.glb" id="2_x54vr"]
+[ext_resource type="PackedScene" uid="uid://cmcieugnwchq0" path="res://Assets/kenney_furniture-kit/Models/GLTF format/floorFull.glb" id="3_jer8g"]
+[ext_resource type="PackedScene" uid="uid://dac8byv2upt2n" path="res://Assets/kenney_furniture-kit/Models/GLTF format/floorHalf.glb" id="4_t3mv4"]
+[ext_resource type="PackedScene" uid="uid://fu4778w5ueqy" path="res://Assets/kenney_furniture-kit/Models/GLTF format/lampRoundFloor.glb" id="5_v7ap4"]
+[ext_resource type="PackedScene" uid="uid://d11c8pdd8oo0n" path="res://Assets/kenney_furniture-kit/Models/GLTF format/lampSquareFloor.glb" id="6_80jjt"]
+[ext_resource type="PackedScene" uid="uid://b7gtjv8owbme4" path="res://Assets/kenney_furniture-kit/Models/GLTF format/lampWall.glb" id="7_nhjj0"]
+[ext_resource type="PackedScene" uid="uid://b0xs5qkt40lve" path="res://Assets/kenney_furniture-kit/Models/GLTF format/wall.glb" id="8_um2k2"]
+[ext_resource type="PackedScene" uid="uid://8j1k8duntw57" path="res://Assets/kenney_furniture-kit/Models/GLTF format/wallCorner.glb" id="9_gpwe3"]
+[ext_resource type="PackedScene" uid="uid://g1e520xwaj5k" path="res://Assets/kenney_furniture-kit/Models/GLTF format/wallCornerRond.glb" id="10_6mmjk"]
+[ext_resource type="PackedScene" uid="uid://d1vp5newsrkq2" path="res://Assets/kenney_furniture-kit/Models/GLTF format/wallDoorway.glb" id="11_4fqgs"]
+[ext_resource type="PackedScene" uid="uid://cspbe4o7et7w2" path="res://Assets/kenney_furniture-kit/Models/GLTF format/wallDoorwayWide.glb" id="12_wsav0"]
+[ext_resource type="PackedScene" uid="uid://dqffmyiforni6" path="res://Assets/kenney_furniture-kit/Models/GLTF format/wallHalf.glb" id="13_r3dq4"]
+[ext_resource type="PackedScene" uid="uid://c5wlqp72rqac0" path="res://Assets/kenney_furniture-kit/Models/GLTF format/wallWindow.glb" id="14_r8sbn"]
+[ext_resource type="PackedScene" uid="uid://6jw6tw73lask" path="res://Assets/kenney_furniture-kit/Models/GLTF format/wallWindowSlide.glb" id="15_gspew"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_07cvt"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+[node name="Decoration" type="Node3D" unique_id=414586003]
 
-[sub_resource type="SphereMesh" id="SphereMesh_jqpii"]
+[node name="floorCorner" parent="." unique_id=1557810761 instance=ExtResource("1_qv65c")]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_jqpii"]
+[node name="floorCornerRound" parent="." unique_id=1877712684 instance=ExtResource("2_x54vr")]
 
-[node name="Decoration" type="Node3D"]
+[node name="floorFull" parent="." unique_id=1150056939 instance=ExtResource("3_jer8g")]
 
-[node name="mesa" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-visible = false
-mesh = SubResource("BoxMesh_07cvt")
+[node name="floorHalf" parent="." unique_id=1846026439 instance=ExtResource("4_t3mv4")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="mesa"]
+[node name="lampRoundFloor" parent="." unique_id=2027894668 instance=ExtResource("5_v7ap4")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="mesa/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_07cvt")
+[node name="lampSquareFloor" parent="." unique_id=1388015089 instance=ExtResource("6_80jjt")]
 
-[node name="bola" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_jqpii")
+[node name="lampWall" parent="." unique_id=1551303024 instance=ExtResource("7_nhjj0")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="bola"]
+[node name="wall" parent="." unique_id=638048140 instance=ExtResource("8_um2k2")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bola/StaticBody3D"]
-shape = SubResource("SphereShape3D_jqpii")
+[node name="wallCorner" parent="." unique_id=1792687129 instance=ExtResource("9_gpwe3")]
+
+[node name="wallCornerRond" parent="." unique_id=425650961 instance=ExtResource("10_6mmjk")]
+
+[node name="wallDoorway" parent="." unique_id=442515824 instance=ExtResource("11_4fqgs")]
+
+[node name="wallDoorwayWide" parent="." unique_id=106601647 instance=ExtResource("12_wsav0")]
+
+[node name="wallHalf" parent="." unique_id=1727026535 instance=ExtResource("13_r3dq4")]
+
+[node name="wallWindow" parent="." unique_id=685071522 instance=ExtResource("14_r8sbn")]
+
+[node name="wallWindowSlide" parent="." unique_id=564812957 instance=ExtResource("15_gspew")]

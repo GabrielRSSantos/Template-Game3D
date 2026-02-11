@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://detqcsw6cc4dx"]
+[gd_scene format=3 uid="uid://detqcsw6cc4dx"]
 
 [ext_resource type="Script" uid="uid://ce5ekjxdk23y5" path="res://scripts/enemy.gd" id="1_7p1mj"]
 
@@ -10,16 +10,16 @@ material = SubResource("StandardMaterial3D_7p1mj")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
 
-[node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
+[node name="Enemy" type="CharacterBody3D" unique_id=1527824316 groups=["enemy"]]
 script = ExtResource("1_7p1mj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1255884412]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01771, 0)
 mesh = SubResource("CapsuleMesh_md0e3")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1885901584]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_md0e3")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1221391052]

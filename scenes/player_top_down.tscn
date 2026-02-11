@@ -2815,7 +2815,6 @@ target_position = Vector3(0, 0, -1)
 transform = Transform3D(0.265419, 0, 0, 0, 0.265419, 0, 0, 0, 0.937334, 0, -0.334002, 0.1953)
 visible = false
 mesh = SubResource("BoxMesh_g2els")
-skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Head/BulletSpawn" unique_id=1916736769]
 light_energy = 2.0
@@ -2888,10 +2887,12 @@ bones/6/scale = Vector3(1, 1, 1)
 [node name="body-mesh" type="MeshInstance3D" parent="character-female-a/character-female-a/Skeleton3D" unique_id=812731058]
 mesh = SubResource("ArrayMesh_q527u")
 skin = SubResource("Skin_73f6s")
+skeleton = NodePath("..")
 
 [node name="head-mesh" type="MeshInstance3D" parent="character-female-a/character-female-a/Skeleton3D" unique_id=914903148]
 mesh = SubResource("ArrayMesh_dopt1")
 skin = SubResource("Skin_73f6s")
+skeleton = NodePath("..")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="character-female-a/character-female-a/Skeleton3D" unique_id=1613005993]
 transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, -0.09989677, 0.28775, -0.017250001)
