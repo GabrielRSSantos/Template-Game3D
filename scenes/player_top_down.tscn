@@ -29,6 +29,9 @@ material = SubResource("StandardMaterial3D_3vyb7")
 
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_vdmty"]
+viewport_path = NodePath("PressButtonViewPort")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.420491
 height = 1.3779297
@@ -2739,9 +2742,6 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_g2els"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vdmty"]
-viewport_path = NodePath("PressButtonViewPort")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2els"]
 bg_color = Color(0, 0.9647059, 0.27450982, 1)
 
@@ -2796,7 +2796,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.71473074, 0)
 shape = SubResource("SphereShape3D_g2els")
 
 [node name="CameraHead" type="Camera3D" parent="Head" unique_id=477416829]
-transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0.18, 1.5, 2.2)
+transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0.75, 0.7, 0.6)
 current = true
 fov = 90.0
 
@@ -2805,6 +2805,7 @@ target_position = Vector3(0, 0, -2)
 
 [node name="BulletPosition" type="MeshInstance3D" parent="Head/RayCastBullet" unique_id=454689027]
 transform = Transform3D(0.143147, 0, 0, 0, 0.143148, 6.70552e-08, 0, -2.23517e-08, 0.143147, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_3vyb7")
 
 [node name="BulletSpawn" type="RayCast3D" parent="Head" unique_id=937200572]
@@ -2817,12 +2818,26 @@ visible = false
 mesh = SubResource("BoxMesh_g2els")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Head/BulletSpawn" unique_id=1916736769]
-light_energy = 2.0
-spot_range = 5.0361
-spot_angle = 19.6437
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, -0.35, 0.5)
+light_energy = 0.695
+spot_range = 6.0
+spot_attenuation = 0.8
 
 [node name="SlashNode" parent="Head" unique_id=228643541 instance=ExtResource("4_u5ewv")]
 transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, -0.047139943, -0.723248, -0.8349751)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Head" unique_id=469394383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.35, 0.35)
+light_energy = 0.4
+omni_range = 3.0
+omni_attenuation = 1.7
+
+[node name="PressButtonSprite" type="Sprite3D" parent="Head" unique_id=799204611]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.69, 0.63272, 0)
+visible = false
+modulate = Color(1, 1, 1, 0.5058824)
+billboard = 1
+texture = SubResource("ViewportTexture_vdmty")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1750734428]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6981249, 0)
@@ -2887,12 +2902,10 @@ bones/6/scale = Vector3(1, 1, 1)
 [node name="body-mesh" type="MeshInstance3D" parent="character-female-a/character-female-a/Skeleton3D" unique_id=812731058]
 mesh = SubResource("ArrayMesh_q527u")
 skin = SubResource("Skin_73f6s")
-skeleton = NodePath("..")
 
 [node name="head-mesh" type="MeshInstance3D" parent="character-female-a/character-female-a/Skeleton3D" unique_id=914903148]
 mesh = SubResource("ArrayMesh_dopt1")
 skin = SubResource("Skin_73f6s")
-skeleton = NodePath("..")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="character-female-a/character-female-a/Skeleton3D" unique_id=1613005993]
 transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, -0.09989677, 0.28775, -0.017250001)
@@ -2909,18 +2922,10 @@ debug_color = Color(0.8095281, 0.10244887, 0.56010586, 0.41960785)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="character-female-a" unique_id=1839475507]
 libraries/ = SubResource("AnimationLibrary_2rp7n")
 
-[node name="SpriteViewPort" type="Sprite3D" parent="." unique_id=1137303012]
-transform = Transform3D(0.36803433, 0, 0, 0, 0.10042679, 0, 0, 0, 1, 0, 1.8685697, 0)
-visible = false
+[node name="SearchBarSprite" type="Sprite3D" parent="." unique_id=1137303012]
+transform = Transform3D(0.36803433, 0, 0, 0, 0.10042679, 0, 0, 0, 1, 0.78, 1.75, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_g2els")
-
-[node name="PressButtonSprite" type="Sprite3D" parent="." unique_id=799204611]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.3, 0)
-visible = false
-modulate = Color(1, 1, 1, 0.5058824)
-billboard = 1
-texture = SubResource("ViewportTexture_vdmty")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1747659335]
 disable_3d = true
@@ -2932,10 +2937,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -158.0
-offset_top = -13.5
-offset_right = 158.0
-offset_bottom = 13.5
+offset_left = -106.0
+offset_top = -56.0
+offset_right = 44.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

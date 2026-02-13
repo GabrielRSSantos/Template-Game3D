@@ -4,6 +4,8 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.004
 
+@export var can_control = true
+
 @onready var head = $Head
 @onready var camera = $Head/CameraHead
 @onready var raycast = $Head/RayCastBullet
@@ -20,10 +22,10 @@ var bullet = load("res://scenes/bullet.tscn")
 
 #Player Interaction
 @onready var sub_viewport: SubViewport = $SubViewport
-@onready var sprite_sub_viewport: Sprite3D = $SpriteViewPort
+@onready var sprite_sub_viewport: Sprite3D = $SearchBarSprite
 @onready var progress_bar_searching: ProgressBar = $SubViewport/ProgressBar
 @onready var player_interaction_top_down: Area3D = $Head/PlayerInteraction
-@onready var press_button_sprite: Sprite3D = $PressButtonSprite
+@onready var press_button_sprite: Sprite3D = $Head/PressButtonSprite
 
 var can_rotate := true
 var can_search := false
@@ -50,6 +52,8 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("a", "d", "w", "s")
+	if not can_control:
+		input_dir = Vector2.ZERO
 	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -92,6 +96,7 @@ func _on_player_interaction_body_entered(body: Node3D) -> void:
 	can_search = check_is_box(body)
 
 func _on_player_interaction_body_exited(body: Node3D) -> void:
+	press_button_sprite.visible = false
 	can_search = false
 
 func check_is_box(box : Node3D) -> bool:
