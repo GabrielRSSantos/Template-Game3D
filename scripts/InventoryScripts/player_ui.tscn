@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dtoyroxvctvdh"]
+
+[ext_resource type="Script" uid="uid://b5pknrqfutjne" path="res://Scripts/InventoryScripts/slot.gd" id="1_vfyya"]
+
+[node name="PlayerUI" type="Control" unique_id=107256935]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot" type="PanelContainer" parent="." unique_id=1521406130]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.08640278
+anchor_bottom = 0.14537038
+offset_right = 0.4639969
+offset_bottom = 5.7999954
+script = ExtResource("1_vfyya")
+metadata/_edit_use_anchors_ = true

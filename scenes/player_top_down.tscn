@@ -1,10 +1,11 @@
 [gd_scene format=4 uid="uid://cvj5ylrowq3da"]
 
-[ext_resource type="Script" uid="uid://trvdinrhhr3i" path="res://scripts/player_top_down.gd" id="1_d81os"]
+[ext_resource type="Script" uid="uid://trvdinrhhr3i" path="res://Scripts/player_top_down.gd" id="1_d81os"]
 [ext_resource type="Texture2D" uid="uid://c2dexg47q6ajb" path="res://Assets/Models/FBX format/Textures/colormap.png" id="2_pg4pe"]
 [ext_resource type="Texture2D" uid="uid://bs0llftvvvooa" path="res://Assets/Keyboard & Mouse/Double/keyboard_e.png" id="3_vdmty"]
 [ext_resource type="FontFile" uid="uid://bnnmyh2r7slgk" path="res://Assets/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.ttf" id="4_et54c"]
 [ext_resource type="PackedScene" uid="uid://cl2cgnmoifsk" path="res://Assets/Slash/slash.tscn" id="4_u5ewv"]
+[ext_resource type="PackedScene" uid="uid://dtoyroxvctvdh" path="res://Scripts/InventoryScripts/player_ui.tscn" id="6_e0vwy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u5ewv"]
 font = ExtResource("4_et54c")
@@ -2787,9 +2788,18 @@ texture = ExtResource("3_vdmty")
 [node name="Head" type="Node3D" parent="." unique_id=1782390713]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41728, 0)
 
+[node name="PlayerInteractionRayCast" type="RayCast3D" parent="Head" unique_id=629642034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2942796, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
 [node name="PlayerInteraction" type="Area3D" parent="Head" unique_id=808168251]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1.41728, -0.837)
+visible = false
 collision_mask = 2
+monitoring = false
+monitorable = false
 
 [node name="PlayerInteractionCollision" type="CollisionShape3D" parent="Head/PlayerInteraction" unique_id=209444304]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.71473074, 0)
@@ -2950,8 +2960,12 @@ show_percentage = false
 
 [node name="PlayerCanvas" type="CanvasLayer" parent="." unique_id=32832859]
 
+[node name="PlayerUI" parent="PlayerCanvas" unique_id=107256935 instance=ExtResource("6_e0vwy")]
+mouse_filter = 2
+
 [connection signal="body_entered" from="Head/PlayerInteraction" to="." method="_on_player_interaction_body_entered"]
 [connection signal="body_exited" from="Head/PlayerInteraction" to="." method="_on_player_interaction_body_exited"]
 [connection signal="animation_finished" from="character-female-a/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
 [editable path="Head/SlashNode"]
+[editable path="PlayerCanvas/PlayerUI"]

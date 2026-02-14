@@ -1,6 +1,6 @@
 class_name Box extends StaticBody3D
 
-@export var item = null
+@export var item : ItemData
 
 @onready var box_mesh: MeshInstance3D = $BoxMesh
 @onready var outline_shader = preload("res://Shaders/outline_shader.gdshader")
