@@ -22,7 +22,7 @@ var bullet = load("res://scenes/bullet.tscn")
 
 #Player Interaction
 @onready var sub_viewport: SubViewport = $SubViewport
-@onready var sprite_sub_viewport: Sprite3D = $SearchBarSprite
+@onready var sprite_sub_viewport: Sprite3D = $Head/SearchBarSprite
 @onready var progress_bar_searching: ProgressBar = $SubViewport/ProgressBar
 @onready var player_interaction_top_down: Area3D = $Head/PlayerInteraction
 @onready var player_interaction_ray_cast: RayCast3D = $Head/PlayerInteractionRayCast
@@ -51,8 +51,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("a", "d", "w", "s")
 	if not can_control:
 		input_dir = Vector2.ZERO

@@ -33,6 +33,9 @@ material = SubResource("StandardMaterial3D_3vyb7")
 [sub_resource type="ViewportTexture" id="ViewportTexture_vdmty"]
 viewport_path = NodePath("PressButtonViewPort")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_g2els"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.420491
 height = 1.3779297
@@ -2740,9 +2743,6 @@ _data = {
 &"wheelchair-sit": SubResource("Animation_3kbh3")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_g2els"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2els"]
 bg_color = Color(0, 0.9647059, 0.27450982, 1)
 
@@ -2849,6 +2849,11 @@ modulate = Color(1, 1, 1, 0.5058824)
 billboard = 1
 texture = SubResource("ViewportTexture_vdmty")
 
+[node name="SearchBarSprite" type="Sprite3D" parent="Head" unique_id=1137303012]
+transform = Transform3D(0.36803433, 0, 0, 0, 0.10042679, 0, 0, 0, 1, 0.78, 0.33272004, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_g2els")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1750734428]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6981249, 0)
 shape = SubResource("CapsuleShape3D_g2els")
@@ -2931,11 +2936,6 @@ debug_color = Color(0.8095281, 0.10244887, 0.56010586, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="character-female-a" unique_id=1839475507]
 libraries/ = SubResource("AnimationLibrary_2rp7n")
-
-[node name="SearchBarSprite" type="Sprite3D" parent="." unique_id=1137303012]
-transform = Transform3D(0.36803433, 0, 0, 0, 0.10042679, 0, 0, 0, 1, 0.78, 1.75, 0)
-billboard = 1
-texture = SubResource("ViewportTexture_g2els")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1747659335]
 disable_3d = true
