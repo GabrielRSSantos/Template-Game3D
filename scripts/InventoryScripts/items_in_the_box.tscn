@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dv5743bkj8rhh"]
+
+[ext_resource type="Script" uid="uid://dpc25bck1tst7" path="res://scripts/InventoryScripts/items_in_the_box.gd" id="1_5gimf"]
+[ext_resource type="Script" uid="uid://clb5s37iqy8lf" path="res://Items/item_data.gd" id="2_hyjaw"]
+[ext_resource type="Resource" uid="uid://d36ybco1gosja" path="res://Items/blue_pillow.tres" id="3_dilqg"]
+[ext_resource type="Resource" uid="uid://bkcynv2jg47ao" path="res://Items/pillow.tres" id="4_qslkc"]
+
+[node name="ItemsInTheBox" type="Control" unique_id=1942654424]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5gimf")
+items_in_box = Array[ExtResource("2_hyjaw")]([ExtResource("3_dilqg"), ExtResource("4_qslkc"), ExtResource("3_dilqg")])
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1542000549]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=2057276768]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1

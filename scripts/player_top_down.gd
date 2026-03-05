@@ -25,13 +25,12 @@ var bullet = load("res://scenes/bullet.tscn")
 @onready var sprite_sub_viewport: Sprite3D = $Head/SearchBarSprite
 @onready var progress_bar_searching: ProgressBar = $SubViewport/ProgressBar
 @onready var player_interaction_top_down: Area3D = $Head/PlayerInteraction
-@onready var player_interaction_ray_cast: RayCast3D = $Head/PlayerInteractionRayCast
 @onready var press_button_sprite: Sprite3D = $Head/PressButtonSprite
 
 var can_rotate := true
 var can_search := false
 var searching := false
-var item_on_box : ItemData = null
+var item_in_box : Array[ItemData] = []
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -64,14 +63,7 @@ func _physics_process(delta: float) -> void:
 		
 	animation_character(direction)
 	move_and_slide()
-	
-	if player_interaction_ray_cast.get_collider() is Box:
-		can_search = true
-		player_search(player_interaction_ray_cast.get_collider().item, delta)
-	else:
-		clean_searching_progress()
-
-	
+	player_search(item_in_box, delta)
 
 func bullet_instance() -> void:
 	var instance = bullet.instantiate()
@@ -99,8 +91,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		is_attacking = false
 		$Head/SlashNode/AnimationSlash.play("RESET")
 
-
-func player_search(item, delta) -> void:
+func player_search(items, delta) -> void:
 	if can_search:
 		press_button_sprite.visible = true
 		if Input.is_action_just_pressed("E"):
@@ -109,30 +100,40 @@ func player_search(item, delta) -> void:
 		searching = false
 	
 	if searching:
-		searching_item(item, delta)
+		searching_item(items, delta)
 	else:
 		can_rotate = true
 		sprite_sub_viewport.visible = false
 		progress_bar_searching.value = 0
 
-func searching_item(item, delta) -> void:
+func searching_item(items, delta) -> void:
 	press_button_sprite.visible = false
 	can_rotate = false
 	sprite_sub_viewport.visible = true
-	progress_bar_searching.value += delta * 60
+	#progress_bar_searching.value += delta * 60
+	progress_bar_searching.value = 100
 	if progress_bar_searching.value == 100:
-		item_found(item)
+		#item_found(item)
+		items_found(items)
 		searching = false
 
 func clean_searching_progress() -> void:
+	item_in_box.clear()
 	can_search = false
 	searching = false
 	can_rotate = true
 	sprite_sub_viewport.visible = false
 	press_button_sprite.visible = false
 	progress_bar_searching.value = 0
-	
+
+func items_found(items: Array[ItemData]) -> void:
+	$PlayerCanvas/ItemsInTheBox.visible = true
+	$PlayerCanvas/ItemsInTheBox.open_box(item_in_box)
+
 func item_found(item : ItemData) -> void:
+	if item == null:
+		return
+	
 	var slot = $PlayerCanvas/PlayerUI/Slot
 	for child in slot.get_children():
 		child.queue_free()
@@ -146,3 +147,13 @@ func item_found(item : ItemData) -> void:
 	item_icon.custom_minimum_size = Vector2(40, 40) 
 
 	slot.add_child(item_icon)
+
+func _on_player_interaction_body_entered(body: Node3D) -> void:
+	if body is Box:
+		item_in_box = body.items
+		body.aplicar_outline()
+		can_search = true
+
+func _on_player_interaction_body_exited(body: Node3D) -> void:
+	body.remover_outline()
+	clean_searching_progress()

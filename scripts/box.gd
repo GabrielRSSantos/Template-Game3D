@@ -1,8 +1,8 @@
 class_name Box extends StaticBody3D
 
-@export var item : ItemData
+@export var items : Array[ItemData]
 
-@onready var box_mesh: MeshInstance3D = $BoxMesh
+@export var box_mesh: MeshInstance3D
 @onready var outline_shader = preload("res://Shaders/outline_shader.gdshader")
 
 func aplicar_outline() -> void:
