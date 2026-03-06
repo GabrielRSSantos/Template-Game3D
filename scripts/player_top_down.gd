@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir := Input.get_vector("a", "d", "w", "s")
-	if not can_control:
+	if not can_control or $PlayerCanvas/ItemsInTheBox.visible:
 		input_dir = Vector2.ZERO
 	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -127,7 +127,6 @@ func clean_searching_progress() -> void:
 	progress_bar_searching.value = 0
 
 func items_found(items: Array[ItemData]) -> void:
-	$PlayerCanvas/ItemsInTheBox.visible = true
 	$PlayerCanvas/ItemsInTheBox.open_box(item_in_box)
 
 func item_found(item : ItemData) -> void:
@@ -152,7 +151,10 @@ func _on_player_interaction_body_entered(body: Node3D) -> void:
 	if body is Box:
 		item_in_box = body.items
 		body.aplicar_outline()
-		can_search = true
+		if $PlayerCanvas/ItemsInTheBox.visible:
+			can_search = false
+		else:
+			can_search = true
 
 func _on_player_interaction_body_exited(body: Node3D) -> void:
 	body.remover_outline()

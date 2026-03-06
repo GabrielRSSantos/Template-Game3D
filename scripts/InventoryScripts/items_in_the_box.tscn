@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dv5743bkj8rhh"]
 
-[ext_resource type="Script" uid="uid://dpc25bck1tst7" path="res://scripts/InventoryScripts/items_in_the_box.gd" id="1_5gimf"]
+[ext_resource type="Script" uid="uid://dpc25bck1tst7" path="res://Scripts/InventoryScripts/items_in_the_box.gd" id="1_5gimf"]
 [ext_resource type="Script" uid="uid://clb5s37iqy8lf" path="res://Items/item_data.gd" id="2_hyjaw"]
 [ext_resource type="Resource" uid="uid://d36ybco1gosja" path="res://Items/blue_pillow.tres" id="3_dilqg"]
 [ext_resource type="Resource" uid="uid://bkcynv2jg47ao" path="res://Items/pillow.tres" id="4_qslkc"]

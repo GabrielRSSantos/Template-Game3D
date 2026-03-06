@@ -18,6 +18,7 @@ extends Control
 	#h_box_container.get_child(0).grab_focus()
 
 func open_box(items) -> void:
+	self.visible = true
 	for item in items:
 		var new_item = TextureButton.new()
 		new_item.name = item.name
@@ -40,4 +41,13 @@ func _input(event: InputEvent) -> void:
 
 func _item_selected(item_data) -> void:
 	item_data.queue_free()
-	h_box_container.get_child(0).grab_focus()
+	var children = h_box_container.get_children()
+	
+	if children.size() > 1:
+		var next_item = children[0] if children[0] != item_data else children[1]
+		next_item.grab_focus()
+	else:
+		close_box()
+
+func close_box() -> void:
+	self.visible = false

@@ -1,12 +1,12 @@
 [gd_scene format=4 uid="uid://cvj5ylrowq3da"]
 
-[ext_resource type="Script" uid="uid://trvdinrhhr3i" path="res://scripts/player_top_down.gd" id="1_d81os"]
+[ext_resource type="Script" uid="uid://trvdinrhhr3i" path="res://Scripts/player_top_down.gd" id="1_d81os"]
 [ext_resource type="Texture2D" uid="uid://c2dexg47q6ajb" path="res://Assets/Models/FBX format/Textures/colormap.png" id="2_pg4pe"]
 [ext_resource type="Texture2D" uid="uid://bs0llftvvvooa" path="res://Assets/Keyboard & Mouse/Double/keyboard_e.png" id="3_vdmty"]
 [ext_resource type="FontFile" uid="uid://bnnmyh2r7slgk" path="res://Assets/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.ttf" id="4_et54c"]
 [ext_resource type="PackedScene" uid="uid://cl2cgnmoifsk" path="res://Assets/Slash/slash.tscn" id="4_u5ewv"]
-[ext_resource type="PackedScene" uid="uid://dtoyroxvctvdh" path="res://scripts/InventoryScripts/player_ui.tscn" id="6_e0vwy"]
-[ext_resource type="PackedScene" uid="uid://dv5743bkj8rhh" path="res://scripts/InventoryScripts/items_in_the_box.tscn" id="7_l8jub"]
+[ext_resource type="PackedScene" uid="uid://dtoyroxvctvdh" path="res://Scripts/InventoryScripts/player_ui.tscn" id="6_e0vwy"]
+[ext_resource type="PackedScene" uid="uid://dv5743bkj8rhh" path="res://Scripts/InventoryScripts/items_in_the_box.tscn" id="7_l8jub"]
 [ext_resource type="Script" uid="uid://clb5s37iqy8lf" path="res://Items/item_data.gd" id="8_6l64u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u5ewv"]
