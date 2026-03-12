@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://jkrhip72wfxf"]
+
+[ext_resource type="PackedScene" uid="uid://dtoyroxvctvdh" path="res://Scripts/InventoryScripts/player_ui.tscn" id="1_b8qkw"]
+[ext_resource type="Script" uid="uid://caqgyuuaenrq1" path="res://Scripts/player_canvas.gd" id="1_iou4q"]
+[ext_resource type="PackedScene" uid="uid://dv5743bkj8rhh" path="res://Scripts/InventoryScripts/items_in_the_box.tscn" id="2_iou4q"]
+[ext_resource type="Script" uid="uid://clb5s37iqy8lf" path="res://Items/item_data.gd" id="3_2s2jh"]
+[ext_resource type="Resource" uid="uid://bkcynv2jg47ao" path="res://Items/pillow.tres" id="5_r5jc2"]
+[ext_resource type="Resource" uid="uid://d36ybco1gosja" path="res://Items/blue_pillow.tres" id="6_y1n5u"]
+
+[node name="PlayerCanvas" type="CanvasLayer" unique_id=274512905]
+script = ExtResource("1_iou4q")
+
+[node name="PlayerUI" parent="." unique_id=107256935 instance=ExtResource("1_b8qkw")]
+mouse_filter = 2
+
+[node name="ItemsInTheBox" parent="." unique_id=1942654424 instance=ExtResource("2_iou4q")]
+items_in_box = Array[ExtResource("3_2s2jh")]([ExtResource("5_r5jc2"), ExtResource("6_y1n5u"), ExtResource("5_r5jc2")])
+
+[editable path="PlayerUI"]
+[editable path="ItemsInTheBox"]

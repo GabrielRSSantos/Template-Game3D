@@ -5,9 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bs0llftvvvooa" path="res://Assets/Keyboard & Mouse/Double/keyboard_e.png" id="3_vdmty"]
 [ext_resource type="FontFile" uid="uid://bnnmyh2r7slgk" path="res://Assets/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.ttf" id="4_et54c"]
 [ext_resource type="PackedScene" uid="uid://cl2cgnmoifsk" path="res://Assets/Slash/slash.tscn" id="4_u5ewv"]
-[ext_resource type="PackedScene" uid="uid://dtoyroxvctvdh" path="res://Scripts/InventoryScripts/player_ui.tscn" id="6_e0vwy"]
-[ext_resource type="PackedScene" uid="uid://dv5743bkj8rhh" path="res://Scripts/InventoryScripts/items_in_the_box.tscn" id="7_l8jub"]
-[ext_resource type="Script" uid="uid://clb5s37iqy8lf" path="res://Items/item_data.gd" id="8_6l64u"]
+[ext_resource type="PackedScene" uid="uid://jkrhip72wfxf" path="res://Scenes/player_canvas.tscn" id="6_e0vwy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u5ewv"]
 font = ExtResource("4_et54c")
@@ -2951,19 +2949,10 @@ size_flags_vertical = 4
 theme_override_styles/fill = SubResource("StyleBoxFlat_g2els")
 show_percentage = false
 
-[node name="PlayerCanvas" type="CanvasLayer" parent="." unique_id=32832859]
-
-[node name="PlayerUI" parent="PlayerCanvas" unique_id=107256935 instance=ExtResource("6_e0vwy")]
-mouse_filter = 2
-
-[node name="ItemsInTheBox" parent="PlayerCanvas" unique_id=1942654424 instance=ExtResource("7_l8jub")]
-visible = false
-items_in_box = Array[ExtResource("8_6l64u")]([])
+[node name="PlayerCanvas" parent="." unique_id=274512905 instance=ExtResource("6_e0vwy")]
 
 [connection signal="body_entered" from="Head/PlayerInteraction" to="." method="_on_player_interaction_body_entered"]
 [connection signal="body_exited" from="Head/PlayerInteraction" to="." method="_on_player_interaction_body_exited"]
 [connection signal="animation_finished" from="character-female-a/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
 [editable path="Head/SlashNode"]
-[editable path="PlayerCanvas/PlayerUI"]
-[editable path="PlayerCanvas/ItemsInTheBox"]

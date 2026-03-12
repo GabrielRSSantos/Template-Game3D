@@ -151,10 +151,7 @@ func _on_player_interaction_body_entered(body: Node3D) -> void:
 	if body is Box:
 		item_in_box = body.items
 		body.aplicar_outline()
-		if $PlayerCanvas/ItemsInTheBox.visible:
-			can_search = false
-		else:
-			can_search = true
+		can_search = true
 
 func _on_player_interaction_body_exited(body: Node3D) -> void:
 	body.remover_outline()
